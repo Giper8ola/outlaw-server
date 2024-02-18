@@ -1,5 +1,8 @@
 export enum AreasEnum {
     shop = 'shop',
     forum = 'forum',
-    area = 'area'
+    area = 'area',
+    item = 'item',
+    file = 'file',
+    category = 'category'
 }

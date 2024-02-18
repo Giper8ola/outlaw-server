@@ -9,6 +9,11 @@ import { AuthModule } from './modules/auth/auth.module';
 import { RolesModule } from './modules/roles/roles.module';
 import { UserModule } from './modules/users/user.module';
 import { JwtModule } from '@nestjs/jwt';
+import { ShopsModule } from './modules/shops/shops.module';
+import { ItemsModule } from './modules/items/items.module';
+import { ItemsTypeModule } from './modules/items-type/items-type.module';
+import { ItemsPropModule } from './modules/items-prop/items-prop.module';
+import { FilesModule } from './modules/files/files.module';
 
 @Module({
     imports: [
@@ -18,7 +23,12 @@ import { JwtModule } from '@nestjs/jwt';
         PassportModule,
         ConfigModule.forRoot({ isGlobal: true }),
         RolesModule,
-        JwtModule
+        JwtModule,
+        ShopsModule,
+        ItemsModule,
+        ItemsTypeModule,
+        ItemsPropModule,
+        FilesModule
     ],
     controllers: [AppController],
     providers: [AppService]

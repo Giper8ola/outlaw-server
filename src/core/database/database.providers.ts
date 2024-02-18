@@ -3,6 +3,10 @@ import { SEQUELIZE, DEVELOPMENT, TEST, PRODUCTION } from '../constants';
 import { databaseConfig } from './database.config';
 import { User } from '../../modules/users/user.entity';
 import { Role } from '../../modules/roles/entities/role.entity';
+import { Item } from '../../modules/items/entities/item.entity';
+import { ItemsType } from '../../modules/items-type/entities/items-type.entity';
+import { ItemsProp } from '../../modules/items-prop/entities/items-prop.entity';
+import { File } from '../../modules/files/entities/file.entity';
 
 export const databaseProviders = [
     {
@@ -23,7 +27,7 @@ export const databaseProviders = [
                     config = databaseConfig.development;
             }
             const sequelize = new Sequelize(config);
-            sequelize.addModels([User, Role]);
+            sequelize.addModels([User, Role, Item, ItemsType, ItemsProp, File]);
             await sequelize.sync();
             return sequelize;
         }

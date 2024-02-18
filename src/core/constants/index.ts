@@ -4,3 +4,6 @@ export const TEST = 'test';
 export const PRODUCTION = 'production';
 export const USER_REPOSITORY = 'USER_REPOSITORY';
 export const ROLE_REPOSITORY = 'ROLE_REPOSITORY';
+export const ITEMS_TYPE_REPOSITORY = 'ITEMS_TYPE_REPOSITORY';
+export const ITEMS_REPOSITORY = 'ITEMS_REPOSITORY';
+export const FILE_REPOSITORY = 'FILE_REPOSITORY';
