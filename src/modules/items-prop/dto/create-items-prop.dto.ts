@@ -29,13 +29,11 @@ export class CreateItemsPropDto {
     })
     count: number;
 
-    @ForeignKey(() => Item)
-    @Column({
-        type: DataType.INTEGER,
-        onDelete: 'CASCADE'
-    })
+    @ApiProperty()
     itemId: number;
 
-    @BelongsTo(() => Item)
-    item: Item;
+    @ApiProperty({
+        default: '1.12.2'
+    })
+    version: string;
 }

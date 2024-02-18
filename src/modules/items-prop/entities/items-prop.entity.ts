@@ -42,6 +42,12 @@ export class ItemsProp extends Model<ItemsProp> {
     })
     count: number;
 
+    @Column({
+        type: DataType.STRING,
+        allowNull: false
+    })
+    version: string;
+
     @ForeignKey(() => Item)
     @Column({
         type: DataType.INTEGER,

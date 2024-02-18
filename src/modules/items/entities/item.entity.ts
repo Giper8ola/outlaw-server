@@ -19,18 +19,6 @@ export class Item extends Model<Item> {
     })
     name: string;
 
-    @Column({
-        type: DataType.STRING,
-        defaultValue: ''
-    })
-    icon: string;
-
-    @Column({
-        type: DataType.STRING,
-        defaultValue: ''
-    })
-    path: string;
-
     @ForeignKey(() => ItemsType)
     @Column({
         type: DataType.INTEGER,

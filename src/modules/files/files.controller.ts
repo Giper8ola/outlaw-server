@@ -1,20 +1,45 @@
 import {
+    Body,
     Controller,
+    Delete,
     Get,
     Param,
-    Delete,
+    Post,
     Res,
-    StreamableFile
+    StreamableFile,
+    UploadedFile,
+    UseInterceptors
 } from '@nestjs/common';
 import { FilesService } from './files.service';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { createReadStream } from 'fs';
 import { join } from 'path';
-import type { Response } from 'express';
+import type { Express, Response } from 'express';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { AuthWithArea } from '../../core/decorators/authWithArea.decorator';
+import { AreasEnum } from '../roles/enums/AreasEnum';
+import { CreateFileDto } from './dto/create-file.dto';
+
+@ApiBearerAuth()
+@AuthWithArea(AreasEnum.file)
 @ApiTags('files')
 @Controller('files')
 export class FilesController {
     constructor(private readonly filesService: FilesService) {}
+
+    @UseInterceptors(
+        FileInterceptor('file', {
+            dest: 'uploads'
+        })
+    )
+    @ApiConsumes('multipart/form-data')
+    @Post('create')
+    async create(
+        @Body() createFileDto: CreateFileDto,
+        @UploadedFile() file: Express.Multer.File
+    ) {
+        return await this.filesService.create(file);
+    }
 
     @Get('findOne:id')
     async findOne(

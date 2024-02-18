@@ -13,12 +13,14 @@ export class ItemsService {
         private readonly filesService: FilesService
     ) {}
     async create(data: CreateItemDto, icon: Express.Multer.File) {
-        if (!!icon)
-            throw new BadRequestException('Необходимо указать иконку предмета');
         const file = await this.filesService.create(icon);
         return await this.itemsRepository.create({ ...data, fileId: file.id });
     }
 
+
+    async getOne(id: number) {
+        return await this.itemsRepository.findByPk(id)
+    }
     async update(id: number, data: UpdateItemDto) {
         return await this.itemsRepository.update(data, {
             where: {

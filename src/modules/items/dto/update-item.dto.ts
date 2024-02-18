@@ -1,4 +1,12 @@
-import { PartialType } from '@nestjs/swagger';
+import { ApiProperty, IntersectionType, PartialType } from '@nestjs/swagger';
 import { CreateItemDto } from './create-item.dto';
 
-export class UpdateItemDto extends PartialType(CreateItemDto) {}
+class AdditionUpdateItemValues {
+    @ApiProperty()
+    fileId: number;
+}
+
+export class UpdateItemDto extends IntersectionType(
+    CreateItemDto,
+    AdditionUpdateItemValues
+) {}

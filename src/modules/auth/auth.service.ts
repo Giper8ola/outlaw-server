@@ -13,18 +13,21 @@ export class AuthService {
     async validateUser(username: string, pass: string) {
         // find if user exist with this email
         const user = await this.userService.findOneByEmail(username);
+
         if (!user) {
             return null;
         }
 
         // find if user password match
         const match = await this.comparePassword(pass, user.password);
+
         if (!match) {
             return null;
         }
 
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { password, ...result } = user['dataValues'];
+
         return result;
     }
 

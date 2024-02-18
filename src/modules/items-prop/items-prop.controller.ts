@@ -1,36 +1,24 @@
-import {
-    Controller,
-    Get,
-    Post,
-    Body,
-    Patch,
-    Param,
-    Delete
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { ItemsPropService } from './items-prop.service';
 import { CreateItemsPropDto } from './dto/create-items-prop.dto';
 import { UpdateItemsPropDto } from './dto/update-items-prop.dto';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { AuthWithArea } from '../../core/decorators/authWithArea.decorator';
+import { AreasEnum } from '../roles/enums/AreasEnum';
 
+@ApiBearerAuth()
+@AuthWithArea(AreasEnum.item)
+@ApiTags('item-prop')
 @Controller('items-prop')
 export class ItemsPropController {
     constructor(private readonly itemsPropService: ItemsPropService) {}
 
-    @Post()
+    @Post('create')
     create(@Body() createItemsPropDto: CreateItemsPropDto) {
         return this.itemsPropService.create(createItemsPropDto);
     }
 
-    @Get()
-    findAll() {
-        return this.itemsPropService.findAll();
-    }
-
-    @Get(':id')
-    findOne(@Param('id') id: string) {
-        return this.itemsPropService.findOne(+id);
-    }
-
-    @Patch(':id')
+    @Patch('update:id')
     update(
         @Param('id') id: string,
         @Body() updateItemsPropDto: UpdateItemsPropDto
@@ -38,7 +26,7 @@ export class ItemsPropController {
         return this.itemsPropService.update(+id, updateItemsPropDto);
     }
 
-    @Delete(':id')
+    @Delete('delete:id')
     remove(@Param('id') id: string) {
         return this.itemsPropService.remove(+id);
     }

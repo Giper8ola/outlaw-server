@@ -14,6 +14,7 @@ import { ItemsModule } from './modules/items/items.module';
 import { ItemsTypeModule } from './modules/items-type/items-type.module';
 import { ItemsPropModule } from './modules/items-prop/items-prop.module';
 import { FilesModule } from './modules/files/files.module';
+import { CategoryModule } from './modules/category/category.module';
 
 @Module({
     imports: [
@@ -28,7 +29,8 @@ import { FilesModule } from './modules/files/files.module';
         ItemsModule,
         ItemsTypeModule,
         ItemsPropModule,
-        FilesModule
+        FilesModule,
+        CategoryModule
     ],
     controllers: [AppController],
     providers: [AppService]

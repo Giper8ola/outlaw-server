@@ -9,6 +9,7 @@ import { FilesModule } from '../files/files.module';
 @Module({
     imports: [JwtModule, RolesModule, FilesModule],
     controllers: [ItemsController],
-    providers: [ItemsService, ...itemsProviders]
+    providers: [ItemsService, ...itemsProviders],
+    exports: [ItemsService]
 })
 export class ItemsModule {}

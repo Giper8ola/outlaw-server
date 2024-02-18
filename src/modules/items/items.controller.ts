@@ -1,4 +1,5 @@
 import {
+    BadRequestException,
     Body,
     Controller,
     Delete,
@@ -16,6 +17,7 @@ import { AuthWithArea } from '../../core/decorators/authWithArea.decorator';
 import { AreasEnum } from '../roles/enums/AreasEnum';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Express } from 'express';
+
 @ApiBearerAuth()
 @ApiTags('items')
 @Controller('items')
@@ -33,6 +35,7 @@ export class ItemsController {
         @Body() createItemDto: CreateItemDto,
         @UploadedFile() icon: Express.Multer.File
     ) {
+        if(!icon) throw new BadRequestException("Необходимо указать иконку предмета")
         return this.itemsService.create(createItemDto, icon);
     }
 
