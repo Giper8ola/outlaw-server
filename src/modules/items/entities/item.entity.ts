@@ -1,5 +1,6 @@
 import {
     BelongsTo,
+    BelongsToMany,
     Column,
     DataType,
     ForeignKey,
@@ -10,6 +11,10 @@ import {
 import { ItemsType } from '../../items-type/entities/items-type.entity';
 import { ItemsProp } from '../../items-prop/entities/items-prop.entity';
 import { File } from '../../files/entities/file.entity';
+import { ItemTypeEnum } from '../../../core/enums/ItemTypeEnum';
+import { Category } from '../../category/entities/category.entity';
+import { CategoryItem } from '../../category-item/entities/category-item.entity';
+
 @Table
 export class Item extends Model<Item> {
     @Column({
@@ -19,19 +24,24 @@ export class Item extends Model<Item> {
     })
     name: string;
 
+    @Column({
+        type: DataType.ENUM(...Object.values(ItemTypeEnum)),
+        allowNull: false
+    })
+    type: keyof typeof ItemTypeEnum;
+
+    /*=====associations=====*/
     @ForeignKey(() => ItemsType)
     @Column({
         type: DataType.INTEGER,
         onDelete: 'SET DEFAULT'
     })
-    typeId: number;
+    entityTypeId: number;
 
     @BelongsTo(() => ItemsType)
-    type: ItemsType;
+    entityType: ItemsType;
 
-    @HasMany(() => ItemsProp, {
-        onDelete: 'CASCADE'
-    })
+    @HasMany(() => ItemsProp)
     props: ItemsProp[];
 
     @ForeignKey(() => File)
@@ -43,4 +53,7 @@ export class Item extends Model<Item> {
 
     @BelongsTo(() => File)
     file: ItemsType;
+
+    @BelongsToMany(() => Category, () => CategoryItem)
+    categories: Array<Category & { CategoryItem: CategoryItem }>;
 }

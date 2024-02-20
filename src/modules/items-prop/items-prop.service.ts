@@ -7,7 +7,8 @@ import { ItemsProp } from './entities/items-prop.entity';
 @Injectable()
 export class ItemsPropService {
     constructor(
-        @Inject(ITEMS_PROP_REPOSITORY) private readonly itemsPropRepository: typeof ItemsProp
+        @Inject(ITEMS_PROP_REPOSITORY)
+        private readonly itemsPropRepository: typeof ItemsProp
     ) {}
     async create(data: CreateItemsPropDto) {
         return await this.itemsPropRepository.create(data);

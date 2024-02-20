@@ -1,4 +1,4 @@
-import { BadRequestException, Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateItemDto } from './dto/create-item.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
 import { ITEMS_REPOSITORY } from '../../core/constants';
@@ -17,9 +17,8 @@ export class ItemsService {
         return await this.itemsRepository.create({ ...data, fileId: file.id });
     }
 
-
     async getOne(id: number) {
-        return await this.itemsRepository.findByPk(id)
+        return await this.itemsRepository.findByPk(id);
     }
     async update(id: number, data: UpdateItemDto) {
         return await this.itemsRepository.update(data, {

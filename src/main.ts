@@ -2,9 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
-import {Role} from "./modules/roles/entities/role.entity";
-import {AreasEnum} from "./modules/roles/enums/AreasEnum";
-import {User} from "./modules/users/user.entity";
+import { Role } from './modules/roles/entities/role.entity';
+import { AreasEnum } from './modules/roles/enums/AreasEnum';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
@@ -22,12 +21,12 @@ async function bootstrap() {
 
     await app.listen(3000);
 
-    let role = await Role.findOne({
+    const role = await Role.findOne({
         where: {
             name: 'Admin'
         }
-    })
-    if(Object.values(AreasEnum).length > role?.areas.length || !role) {
+    });
+    if (Object.values(AreasEnum).length > role?.areas.length || !role) {
         if (role) {
             await Role.destroy({
                 where: {
@@ -36,9 +35,9 @@ async function bootstrap() {
             });
         }
         await Role.create({
-            name: "Admin",
+            name: 'Admin',
             areas: Object.values(AreasEnum)
-        })
+        });
     }
 }
 bootstrap();

@@ -5,7 +5,6 @@ import { JwtModule } from '@nestjs/jwt';
 import { RolesModule } from '../roles/roles.module';
 import { itemsPropProviders } from './items-prop.provider';
 
-
 @Module({
     imports: [JwtModule, RolesModule],
     controllers: [ItemsPropController],

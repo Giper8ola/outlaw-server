@@ -7,22 +7,14 @@ import {
     Table
 } from 'sequelize-typescript';
 import { Item } from '../../items/entities/item.entity';
+import { File } from '../../files/entities/file.entity';
+import { Server } from '../../servers/entities/server.entity';
 @Table
 export class ItemsProp extends Model<ItemsProp> {
     @Column({
         type: DataType.STRING
     })
     name: string;
-
-    @Column({
-        type: DataType.STRING
-    })
-    icon: string;
-
-    @Column({
-        type: DataType.STRING
-    })
-    path: string;
 
     @Column({
         type: DataType.INTEGER,
@@ -57,4 +49,24 @@ export class ItemsProp extends Model<ItemsProp> {
 
     @BelongsTo(() => Item)
     item: Item;
+
+    @ForeignKey(() => File)
+    @Column({
+        type: DataType.INTEGER,
+        onDelete: 'SET DEFAULT'
+    })
+    fileId: number;
+
+    @BelongsTo(() => File)
+    file: File;
+
+    @ForeignKey(() => Server)
+    @Column({
+        type: DataType.INTEGER,
+        onDelete: 'SET DEFAULT'
+    })
+    serverId: number;
+
+    @BelongsTo(() => Server)
+    server: Server;
 }

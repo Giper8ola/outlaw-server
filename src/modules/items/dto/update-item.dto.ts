@@ -1,4 +1,4 @@
-import { ApiProperty, IntersectionType, PartialType } from '@nestjs/swagger';
+import { ApiProperty, IntersectionType, OmitType } from '@nestjs/swagger';
 import { CreateItemDto } from './create-item.dto';
 
 class AdditionUpdateItemValues {
@@ -7,6 +7,6 @@ class AdditionUpdateItemValues {
 }
 
 export class UpdateItemDto extends IntersectionType(
-    CreateItemDto,
+    OmitType(CreateItemDto, ['type', 'icon'] as const),
     AdditionUpdateItemValues
 ) {}

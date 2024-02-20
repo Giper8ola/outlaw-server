@@ -7,6 +7,11 @@ import { Item } from '../../modules/items/entities/item.entity';
 import { ItemsType } from '../../modules/items-type/entities/items-type.entity';
 import { ItemsProp } from '../../modules/items-prop/entities/items-prop.entity';
 import { File } from '../../modules/files/entities/file.entity';
+import { Category } from '../../modules/category/entities/category.entity';
+import { CategoryItem } from '../../modules/category-item/entities/category-item.entity';
+import { Shop } from '../../modules/shops/entities/shop.entity';
+import { Server } from '../../modules/servers/entities/server.entity';
+import { Cluster } from '../../modules/clusters/entities/cluster.entity';
 
 export const databaseProviders = [
     {
@@ -27,7 +32,19 @@ export const databaseProviders = [
                     config = databaseConfig.development;
             }
             const sequelize = new Sequelize(config);
-            sequelize.addModels([User, Role, Item, ItemsType, ItemsProp, File]);
+            sequelize.addModels([
+                User,
+                Role,
+                Item,
+                ItemsType,
+                ItemsProp,
+                File,
+                Category,
+                CategoryItem,
+                Shop,
+                Server,
+                Cluster
+            ]);
             await sequelize.sync();
             return sequelize;
         }

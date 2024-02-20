@@ -15,6 +15,9 @@ import { ItemsTypeModule } from './modules/items-type/items-type.module';
 import { ItemsPropModule } from './modules/items-prop/items-prop.module';
 import { FilesModule } from './modules/files/files.module';
 import { CategoryModule } from './modules/category/category.module';
+import { CategoryItemModule } from './modules/category-item/category-item.module';
+import { ClustersModule } from './modules/clusters/clusters.module';
+import { ServersModule } from './modules/servers/servers.module';
 
 @Module({
     imports: [
@@ -30,7 +33,10 @@ import { CategoryModule } from './modules/category/category.module';
         ItemsTypeModule,
         ItemsPropModule,
         FilesModule,
-        CategoryModule
+        CategoryModule,
+        CategoryItemModule,
+        ClustersModule,
+        ServersModule
     ],
     controllers: [AppController],
     providers: [AppService]

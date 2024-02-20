@@ -3,19 +3,27 @@ import {
     Column,
     DataType,
     ForeignKey,
+    HasOne,
     Model,
     Table
 } from 'sequelize-typescript';
-import { Cluster } from '../../clusters/entities/cluster.entity';
+import { Shop } from '../../shops/entities/shop.entity';
 import { File } from '../../files/entities/file.entity';
+import { ServerPhasesEnum } from '../../../core/enums/ServerPhasesEnum';
 @Table
-export class Shop extends Model<Shop> {
+export class Cluster extends Model<Cluster> {
     @Column({
         type: DataType.STRING,
         unique: true,
         allowNull: false
     })
     name: string;
+
+    @Column({
+        type: DataType.ENUM(...Object.values(ServerPhasesEnum)),
+        defaultValue: ServerPhasesEnum.test
+    })
+    phase: keyof typeof ServerPhasesEnum;
 
     @ForeignKey(() => File)
     @Column
@@ -24,13 +32,6 @@ export class Shop extends Model<Shop> {
     @BelongsTo(() => File)
     icon: File;
 
-    @ForeignKey(() => Cluster)
-    @Column({
-        type: DataType.INTEGER,
-        onDelete: 'CASCADE'
-    })
-    clusterId: number;
-
-    @BelongsTo(() => Cluster)
-    cluster: Cluster;
+    @HasOne(() => Shop)
+    shop: Shop;
 }

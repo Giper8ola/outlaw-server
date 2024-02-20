@@ -35,7 +35,8 @@ export class ItemsController {
         @Body() createItemDto: CreateItemDto,
         @UploadedFile() icon: Express.Multer.File
     ) {
-        if(!icon) throw new BadRequestException("Необходимо указать иконку предмета")
+        if (!icon)
+            throw new BadRequestException('Необходимо указать иконку предмета');
         return this.itemsService.create(createItemDto, icon);
     }
 

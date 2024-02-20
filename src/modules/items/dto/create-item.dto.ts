@@ -1,4 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsEnum } from 'class-validator';
+import { ItemTypeEnum } from '../../../core/enums/ItemTypeEnum';
 
 export class CreateItemDto {
     @ApiProperty()
@@ -8,5 +10,9 @@ export class CreateItemDto {
     icon: any;
 
     @ApiProperty()
-    typeId: number;
+    @IsEnum(ItemTypeEnum)
+    type: ItemTypeEnum;
+
+    @ApiProperty()
+    entityTypeId: number;
 }
