@@ -1,5 +1,4 @@
 import {
-    BadRequestException,
     Body,
     Controller,
     Delete,
@@ -9,21 +8,20 @@ import {
     UploadedFile,
     UseInterceptors
 } from '@nestjs/common';
-import { ItemsService } from './items.service';
-import { CreateItemDto } from './dto/create-item.dto';
-import { UpdateItemDto } from './dto/update-item.dto';
+import { ClustersService } from './clusters.service';
+import { CreateClusterDto } from './dto/create-cluster.dto';
+import { UpdateClusterDto } from './dto/update-cluster.dto';
 import { ApiBearerAuth, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { AuthWithArea } from '../../core/decorators/authWithArea.decorator';
 import { AreasEnum } from '../roles/enums/AreasEnum';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { Express } from 'express';
 
 @ApiBearerAuth()
-@ApiTags('items')
-@Controller('items')
-@AuthWithArea(AreasEnum.item)
-export class ItemsController {
-    constructor(private readonly itemsService: ItemsService) {}
+@AuthWithArea(AreasEnum.cluster)
+@ApiTags('clusters')
+@Controller('clusters')
+export class ClustersController {
+    constructor(private readonly clustersService: ClustersService) {}
     @UseInterceptors(
         FileInterceptor('icon', {
             dest: 'uploads'
@@ -32,24 +30,22 @@ export class ItemsController {
     @ApiConsumes('multipart/form-data')
     @Post('create')
     async create(
-        @Body() createItemDto: CreateItemDto,
+        @Body() createClusterDto: CreateClusterDto,
         @UploadedFile() icon: Express.Multer.File
     ) {
-        if (!icon)
-            throw new BadRequestException('Необходимо указать иконку предмета');
-        return await this.itemsService.create(createItemDto, icon);
+        return await this.clustersService.create(createClusterDto, icon);
     }
 
     @Patch('update:id')
     async update(
         @Param('id') id: string,
-        @Body() updateItemDto: UpdateItemDto
+        @Body() updateClusterDto: UpdateClusterDto
     ) {
-        return await this.itemsService.update(+id, updateItemDto);
+        return await this.clustersService.update(+id, updateClusterDto);
     }
 
     @Delete('delete:id')
     async remove(@Param('id') id: string) {
-        return await this.itemsService.remove(+id);
+        return await this.clustersService.remove(+id);
     }
 }

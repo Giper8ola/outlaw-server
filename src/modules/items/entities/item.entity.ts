@@ -41,9 +41,6 @@ export class Item extends Model<Item> {
     @BelongsTo(() => ItemsType)
     entityType: ItemsType;
 
-    @HasMany(() => ItemsProp)
-    props: ItemsProp[];
-
     @ForeignKey(() => File)
     @Column({
         type: DataType.INTEGER,
@@ -53,6 +50,9 @@ export class Item extends Model<Item> {
 
     @BelongsTo(() => File)
     file: ItemsType;
+
+    @HasMany(() => ItemsProp)
+    props: ItemsProp[];
 
     @BelongsToMany(() => Category, () => CategoryItem)
     categories: Array<Category & { CategoryItem: CategoryItem }>;

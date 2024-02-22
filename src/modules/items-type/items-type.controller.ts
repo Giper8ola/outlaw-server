@@ -1,12 +1,4 @@
-import {
-    Body,
-    Controller,
-    Delete,
-    Get,
-    Param,
-    Patch,
-    Post
-} from '@nestjs/common';
+import { Body, Controller, Delete, Param, Patch, Post } from '@nestjs/common';
 import { ItemsTypeService } from './items-type.service';
 import { CreateItemsTypeDto } from './dto/create-items-type.dto';
 import { UpdateItemsTypeDto } from './dto/update-items-type.dto';
@@ -25,26 +17,16 @@ export class ItemsTypeController {
         return await this.itemsTypeService.create(createItemsTypeDto);
     }
 
-    @Get()
-    findAll() {
-        return this.itemsTypeService.findAll();
-    }
-
-    @Get(':id')
-    findOne(@Param('id') id: string) {
-        return this.itemsTypeService.findOne(+id);
-    }
-
     @Patch('update:id')
-    update(
+    async update(
         @Param('id') id: string,
         @Body() updateItemsTypeDto: UpdateItemsTypeDto
     ) {
-        return this.itemsTypeService.update(+id, updateItemsTypeDto);
+        return await this.itemsTypeService.update(+id, updateItemsTypeDto);
     }
 
     @Delete('delete:id')
-    remove(@Param('id') id: string) {
-        return this.itemsTypeService.remove(+id);
+    async remove(@Param('id') id: string) {
+        return await this.itemsTypeService.remove(+id);
     }
 }

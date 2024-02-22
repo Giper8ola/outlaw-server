@@ -14,20 +14,20 @@ export class ItemsPropController {
     constructor(private readonly itemsPropService: ItemsPropService) {}
 
     @Post('create')
-    create(@Body() createItemsPropDto: CreateItemsPropDto) {
-        return this.itemsPropService.create(createItemsPropDto);
+    async create(@Body() createItemsPropDto: CreateItemsPropDto) {
+        return await this.itemsPropService.create(createItemsPropDto);
     }
 
     @Patch('update:id')
-    update(
+    async update(
         @Param('id') id: string,
         @Body() updateItemsPropDto: UpdateItemsPropDto
     ) {
-        return this.itemsPropService.update(+id, updateItemsPropDto);
+        return await this.itemsPropService.update(+id, updateItemsPropDto);
     }
 
     @Delete('delete:id')
-    remove(@Param('id') id: string) {
-        return this.itemsPropService.remove(+id);
+    async remove(@Param('id') id: string) {
+        return await this.itemsPropService.remove(+id);
     }
 }

@@ -1,33 +1,40 @@
 import {
-    Controller,
-    Get,
-    Post,
     Body,
-    Patch,
+    Controller,
+    Delete,
     Param,
-    Delete
+    Patch,
+    Post,
+    UploadedFile,
+    UseInterceptors
 } from '@nestjs/common';
 import { ShopsService } from './shops.service';
 import { CreateShopDto } from './dto/create-shop.dto';
 import { UpdateShopDto } from './dto/update-shop.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { ApiBearerAuth, ApiConsumes, ApiTags } from '@nestjs/swagger';
+import { Express } from 'express';
+import { AuthWithArea } from '../../core/decorators/authWithArea.decorator';
+import { AreasEnum } from '../roles/enums/AreasEnum';
 
+@ApiBearerAuth()
+@AuthWithArea(AreasEnum.shop)
+@ApiTags('shops')
 @Controller('shops')
 export class ShopsController {
     constructor(private readonly shopsService: ShopsService) {}
-
-    @Post()
-    create(@Body() createShopDto: CreateShopDto) {
-        return this.shopsService.create(createShopDto);
-    }
-
-    @Get()
-    findAll() {
-        return this.shopsService.findAll();
-    }
-
-    @Get(':id')
-    findOne(@Param('id') id: string) {
-        return this.shopsService.findOne(+id);
+    @UseInterceptors(
+        FileInterceptor('icon', {
+            dest: 'uploads'
+        })
+    )
+    @ApiConsumes('multipart/form-data')
+    @Post('create')
+    async create(
+        @Body() createShopDto: CreateShopDto,
+        @UploadedFile() icon: Express.Multer.File
+    ) {
+        return this.shopsService.create(createShopDto, icon);
     }
 
     @Patch(':id')

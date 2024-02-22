@@ -63,7 +63,7 @@ export class ItemsProp extends Model<ItemsProp> {
     @ForeignKey(() => Server)
     @Column({
         type: DataType.INTEGER,
-        onDelete: 'SET DEFAULT'
+        onDelete: 'CASCADE'
     })
     serverId: number;
 

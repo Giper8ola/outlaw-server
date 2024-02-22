@@ -12,6 +12,7 @@ import { CategoryItem } from '../../modules/category-item/entities/category-item
 import { Shop } from '../../modules/shops/entities/shop.entity';
 import { Server } from '../../modules/servers/entities/server.entity';
 import { Cluster } from '../../modules/clusters/entities/cluster.entity';
+import { ShopCategory } from '../../modules/shop-category/entities/shop-category.entity';
 
 export const databaseProviders = [
     {
@@ -43,7 +44,8 @@ export const databaseProviders = [
                 CategoryItem,
                 Shop,
                 Server,
-                Cluster
+                Cluster,
+                ShopCategory
             ]);
             await sequelize.sync();
             return sequelize;

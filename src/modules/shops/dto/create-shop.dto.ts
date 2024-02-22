@@ -6,4 +6,7 @@ export class CreateShopDto {
 
     @ApiProperty({ type: 'string', format: 'binary' })
     icon: any;
+
+    @ApiProperty()
+    clusterId: number;
 }

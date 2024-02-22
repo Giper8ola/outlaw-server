@@ -7,6 +7,6 @@ class AdditionUpdateShopValues {
 }
 
 export class UpdateShopDto extends IntersectionType(
-    OmitType(CreateShopDto, ['icon'] as const),
+    OmitType(CreateShopDto, ['icon', 'clusterId'] as const),
     AdditionUpdateShopValues
 ) {}

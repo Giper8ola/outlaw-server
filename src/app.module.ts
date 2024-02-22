@@ -18,6 +18,7 @@ import { CategoryModule } from './modules/category/category.module';
 import { CategoryItemModule } from './modules/category-item/category-item.module';
 import { ClustersModule } from './modules/clusters/clusters.module';
 import { ServersModule } from './modules/servers/servers.module';
+import { ShopCategoryModule } from './modules/shop-category/shop-category.module';
 
 @Module({
     imports: [
@@ -36,7 +37,8 @@ import { ServersModule } from './modules/servers/servers.module';
         CategoryModule,
         CategoryItemModule,
         ClustersModule,
-        ServersModule
+        ServersModule,
+        ShopCategoryModule
     ],
     controllers: [AppController],
     providers: [AppService]

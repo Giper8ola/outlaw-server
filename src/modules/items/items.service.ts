@@ -17,9 +17,6 @@ export class ItemsService {
         return await this.itemsRepository.create({ ...data, fileId: file.id });
     }
 
-    async getOne(id: number) {
-        return await this.itemsRepository.findByPk(id);
-    }
     async update(id: number, data: UpdateItemDto) {
         return await this.itemsRepository.update(data, {
             where: {

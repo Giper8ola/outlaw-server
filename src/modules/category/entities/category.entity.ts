@@ -10,6 +10,8 @@ import { File } from '../../files/entities/file.entity';
 import { CategoryTypeEnum } from '../../../core/enums/CategoryTypeEnum';
 import { Item } from '../../items/entities/item.entity';
 import { CategoryItem } from '../../category-item/entities/category-item.entity';
+import { ShopCategory } from '../../shop-category/entities/shop-category.entity';
+import { Shop } from '../../shops/entities/shop.entity';
 
 @Table
 export class Category extends Model<Category> {
@@ -35,4 +37,7 @@ export class Category extends Model<Category> {
 
     @BelongsToMany(() => Item, () => CategoryItem)
     items: Array<Item & { CategoryItem: CategoryItem }>;
+
+    @BelongsToMany(() => Shop, () => ShopCategory)
+    shops: Array<Shop & { ShopCategory: ShopCategory }>;
 }

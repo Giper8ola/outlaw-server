@@ -3,5 +3,6 @@ import { CreateItemsPropDto } from './create-items-prop.dto';
 
 export class UpdateItemsPropDto extends OmitType(CreateItemsPropDto, [
     'itemId',
-    'version'
+    'version',
+    'serverId'
 ] as const) {}

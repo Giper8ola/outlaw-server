@@ -1,5 +1,6 @@
 import {
     BelongsTo,
+    BelongsToMany,
     Column,
     DataType,
     ForeignKey,
@@ -8,6 +9,8 @@ import {
 } from 'sequelize-typescript';
 import { Cluster } from '../../clusters/entities/cluster.entity';
 import { File } from '../../files/entities/file.entity';
+import { ShopCategory } from '../../shop-category/entities/shop-category.entity';
+import { Category } from '../../category/entities/category.entity';
 @Table
 export class Shop extends Model<Shop> {
     @Column({
@@ -33,4 +36,7 @@ export class Shop extends Model<Shop> {
 
     @BelongsTo(() => Cluster)
     cluster: Cluster;
+
+    @BelongsToMany(() => Category, () => ShopCategory)
+    categories: Array<Category & { ShopCategory: ShopCategory }>;
 }

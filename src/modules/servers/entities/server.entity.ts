@@ -1,7 +1,16 @@
-import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
+import {
+    BelongsTo,
+    Column,
+    DataType,
+    ForeignKey,
+    HasMany,
+    Model,
+    Table
+} from 'sequelize-typescript';
 import { ItemsProp } from '../../items-prop/entities/items-prop.entity';
 import { DataTypes } from 'sequelize';
 import { ServerPhasesEnum } from '../../../core/enums/ServerPhasesEnum';
+import { Cluster } from '../../clusters/entities/cluster.entity';
 @Table
 export class Server extends Model<Server> {
     @Column({
@@ -37,4 +46,14 @@ export class Server extends Model<Server> {
 
     @HasMany(() => ItemsProp)
     ItemsProps: ItemsProp[];
+
+    @ForeignKey(() => Cluster)
+    @Column({
+        type: DataType.INTEGER,
+        onDelete: 'CASCADE'
+    })
+    clusterId: number;
+
+    @BelongsTo(() => Cluster)
+    cluster: Cluster;
 }

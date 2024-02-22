@@ -7,6 +7,6 @@ export class CreateRoleDto {
     name: string;
 
     @ApiProperty()
-    @IsEnum(AreasEnum, { each: true })
-    areas: AreasEnum[];
+    @IsEnum({ enum: AreasEnum, default: [], isArray: true })
+    areas: AreasEnum[] = [];
 }

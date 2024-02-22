@@ -12,9 +12,12 @@ export class CreateServerDto {
     ip: string;
 
     @ApiProperty()
-    port: string;
+    port: number;
 
     @ApiProperty()
     @IsEnum(ServerPhasesEnum)
     phase: ServerPhasesEnum;
+
+    @ApiProperty()
+    clusterId: number;
 }

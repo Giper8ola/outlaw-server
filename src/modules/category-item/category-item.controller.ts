@@ -18,19 +18,24 @@ export class CategoryItemController {
         return await this.categoryItemService.create(createCategoryItemDto);
     }
 
-    @Patch('create:id')
+    @Patch('update/:categoryId/:itemId')
     async update(
-        @Param('id') id: string,
+        @Param('categoryId') categoryId: string,
+        @Param('itemId') itemId: string,
         @Body() updateCategoryItemDto: UpdateCategoryItemDto
     ) {
         return await this.categoryItemService.update(
-            +id,
+            +categoryId,
+            +itemId,
             updateCategoryItemDto
         );
     }
 
-    @Delete('update:id')
-    async remove(@Param('id') id: string) {
-        return await this.categoryItemService.remove(+id);
+    @Delete('delete/:categoryId/:itemId')
+    async remove(
+        @Param('categoryId') categoryId: string,
+        @Param('itemId') itemId: string
+    ) {
+        return await this.categoryItemService.remove(+categoryId, +itemId);
     }
 }

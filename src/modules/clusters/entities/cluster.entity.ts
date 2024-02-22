@@ -3,6 +3,7 @@ import {
     Column,
     DataType,
     ForeignKey,
+    HasMany,
     HasOne,
     Model,
     Table
@@ -10,6 +11,7 @@ import {
 import { Shop } from '../../shops/entities/shop.entity';
 import { File } from '../../files/entities/file.entity';
 import { ServerPhasesEnum } from '../../../core/enums/ServerPhasesEnum';
+import { Server } from '../../servers/entities/server.entity';
 @Table
 export class Cluster extends Model<Cluster> {
     @Column({
@@ -26,7 +28,10 @@ export class Cluster extends Model<Cluster> {
     phase: keyof typeof ServerPhasesEnum;
 
     @ForeignKey(() => File)
-    @Column
+    @Column({
+        type: DataType.INTEGER,
+        onDelete: 'SET DEFAULT'
+    })
     iconId: number;
 
     @BelongsTo(() => File)
@@ -34,4 +39,7 @@ export class Cluster extends Model<Cluster> {
 
     @HasOne(() => Shop)
     shop: Shop;
+
+    @HasMany(() => Server)
+    servers: Server[];
 }

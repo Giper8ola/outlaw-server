@@ -14,18 +14,24 @@ export class CategoryItemService {
         return await this.categoryItemRepository.create(createCategoryItemDto);
     }
 
-    async update(id: number, updateCategoryItemDto: UpdateCategoryItemDto) {
+    async update(
+        categoryId: number,
+        itemId: number,
+        updateCategoryItemDto: UpdateCategoryItemDto
+    ) {
         return await this.categoryItemRepository.update(updateCategoryItemDto, {
             where: {
-                id
+                categoryId: categoryId,
+                itemId: itemId
             }
         });
     }
 
-    async remove(id: number) {
+    async remove(categoryId: number, itemId: number) {
         return await this.categoryItemRepository.destroy({
             where: {
-                id
+                categoryId: categoryId,
+                itemId: itemId
             }
         });
     }

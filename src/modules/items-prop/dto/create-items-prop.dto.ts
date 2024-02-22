@@ -27,4 +27,7 @@ export class CreateItemsPropDto {
         default: '1.12.2'
     })
     version: string;
+
+    @ApiProperty()
+    serverId: number;
 }

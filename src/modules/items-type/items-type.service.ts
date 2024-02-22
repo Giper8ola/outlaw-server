@@ -15,14 +15,6 @@ export class ItemsTypeService {
         return await this.itemsTypeRepository.create(data);
     }
 
-    findAll() {
-        return `This action returns all itemsType`;
-    }
-
-    findOne(id: number) {
-        return `This action returns a #${id} itemsType`;
-    }
-
     async update(id: number, data: UpdateItemsTypeDto) {
         return await this.itemsTypeRepository.update(data, {
             where: {
