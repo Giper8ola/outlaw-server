@@ -13,6 +13,10 @@ import { Shop } from '../../modules/shops/entities/shop.entity';
 import { Server } from '../../modules/servers/entities/server.entity';
 import { Cluster } from '../../modules/clusters/entities/cluster.entity';
 import { ShopCategory } from '../../modules/shop-category/entities/shop-category.entity';
+import { Privilege } from '../../modules/privileges/entities/privilege.entity';
+import { PrivilegeKit } from '../../modules/privilege-kits/entities/privilege-kit.entity';
+import { PrivilegeRule } from '../../modules/privilege-rules/entities/privilege-rule.entity';
+import { Kit } from '../../modules/kits/entities/kit.entity';
 
 export const databaseProviders = [
     {
@@ -45,7 +49,11 @@ export const databaseProviders = [
                 Shop,
                 Server,
                 Cluster,
-                ShopCategory
+                ShopCategory,
+                Privilege,
+                PrivilegeKit,
+                PrivilegeRule,
+                Kit
             ]);
             await sequelize.sync();
             return sequelize;

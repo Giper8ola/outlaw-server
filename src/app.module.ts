@@ -19,6 +19,10 @@ import { CategoryItemModule } from './modules/category-item/category-item.module
 import { ClustersModule } from './modules/clusters/clusters.module';
 import { ServersModule } from './modules/servers/servers.module';
 import { ShopCategoryModule } from './modules/shop-category/shop-category.module';
+import { PrivilegesModule } from './modules/privileges/privileges.module';
+import { KitsModule } from './modules/kits/kits.module';
+import { PrivilegeKitsModule } from './modules/privilege-kits/privilege-kits.module';
+import { PrivilegeRulesModule } from './modules/privilege-rules/privilege-rules.module';
 
 @Module({
     imports: [
@@ -28,7 +32,7 @@ import { ShopCategoryModule } from './modules/shop-category/shop-category.module
         PassportModule,
         ConfigModule.forRoot({ isGlobal: true }),
         RolesModule,
-        JwtModule,
+        JwtModule.register({global: true}),
         ShopsModule,
         ItemsModule,
         ItemsTypeModule,
@@ -38,7 +42,11 @@ import { ShopCategoryModule } from './modules/shop-category/shop-category.module
         CategoryItemModule,
         ClustersModule,
         ServersModule,
-        ShopCategoryModule
+        ShopCategoryModule,
+        PrivilegesModule,
+        KitsModule,
+        PrivilegeKitsModule,
+        PrivilegeRulesModule
     ],
     controllers: [AppController],
     providers: [AppService]

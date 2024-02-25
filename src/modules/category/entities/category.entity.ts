@@ -3,6 +3,7 @@ import {
     Column,
     DataType,
     ForeignKey,
+    HasOne,
     Model,
     Table
 } from 'sequelize-typescript';
@@ -12,6 +13,7 @@ import { Item } from '../../items/entities/item.entity';
 import { CategoryItem } from '../../category-item/entities/category-item.entity';
 import { ShopCategory } from '../../shop-category/entities/shop-category.entity';
 import { Shop } from '../../shops/entities/shop.entity';
+import { Kit } from '../../kits/entities/kit.entity';
 
 @Table
 export class Category extends Model<Category> {
@@ -40,4 +42,7 @@ export class Category extends Model<Category> {
 
     @BelongsToMany(() => Shop, () => ShopCategory)
     shops: Array<Shop & { ShopCategory: ShopCategory }>;
+
+    @HasOne(() => Kit)
+    kit: Kit;
 }

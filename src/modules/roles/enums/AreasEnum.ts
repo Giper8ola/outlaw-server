@@ -5,5 +5,6 @@ export enum AreasEnum {
     item = 'item',
     file = 'file',
     category = 'category',
-    cluster = 'cluster'
+    cluster = 'cluster',
+    privilege = 'privilege'
 }
