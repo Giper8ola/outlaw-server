@@ -1,4 +1,4 @@
-import { BelongsTo, BelongsToMany, Column, DataType, ForeignKey, HasOne, Model, Table } from 'sequelize-typescript';
+import { BelongsTo, BelongsToMany, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
 import { Privilege } from '../../privileges/entities/privilege.entity';
 import { PrivilegeKit } from '../../privilege-kits/entities/privilege-kit.entity';
 import { Category } from '../../category/entities/category.entity';
