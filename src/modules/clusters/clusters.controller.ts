@@ -13,11 +13,11 @@ import { CreateClusterDto } from './dto/create-cluster.dto';
 import { UpdateClusterDto } from './dto/update-cluster.dto';
 import { ApiBearerAuth, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { AuthWithArea } from '../../core/decorators/authWithArea.decorator';
-import { AreasEnum } from '../roles/enums/AreasEnum';
+import { AreasEnum } from '../../core/enums/AreasEnum';
 import { FileInterceptor } from '@nestjs/platform-express';
 
 @ApiBearerAuth()
-@AuthWithArea(AreasEnum.cluster)
+@AuthWithArea(AreasEnum.CLUSTER)
 @ApiTags('clusters')
 @Controller('clusters')
 export class ClustersController {

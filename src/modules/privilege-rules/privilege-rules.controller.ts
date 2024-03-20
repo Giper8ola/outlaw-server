@@ -4,14 +4,16 @@ import { CreatePrivilegeRuleDto } from './dto/create-privilege-rule.dto';
 import { UpdatePrivilegeRuleDto } from './dto/update-privilege-rule.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthWithArea } from '../../core/decorators/authWithArea.decorator';
-import { AreasEnum } from '../roles/enums/AreasEnum';
+import { AreasEnum } from '../../core/enums/AreasEnum';
 
 @ApiBearerAuth()
-@AuthWithArea(AreasEnum.privilege)
+@AuthWithArea(AreasEnum.PRIVILEGE)
 @ApiTags('privilege-rules')
 @Controller('privilege-rules')
 export class PrivilegeRulesController {
-    constructor(private readonly privilegeRulesService: PrivilegeRulesService) {}
+    constructor(
+        private readonly privilegeRulesService: PrivilegeRulesService
+    ) {}
 
     @Post('create')
     async create(@Body() createPrivilegeRuleDto: CreatePrivilegeRuleDto) {
@@ -19,8 +21,14 @@ export class PrivilegeRulesController {
     }
 
     @Patch('update/:id')
-    async update(@Param('id') id: string, @Body() updatePrivilegeRuleDto: UpdatePrivilegeRuleDto) {
-        return await this.privilegeRulesService.update(+id, updatePrivilegeRuleDto);
+    async update(
+        @Param('id') id: string,
+        @Body() updatePrivilegeRuleDto: UpdatePrivilegeRuleDto
+    ) {
+        return await this.privilegeRulesService.update(
+            +id,
+            updatePrivilegeRuleDto
+        );
     }
 
     @Delete('delete/:id')

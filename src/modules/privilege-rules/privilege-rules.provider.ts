@@ -6,4 +6,4 @@ export const privilegeRulesProvider = [
         provide: PRIVILEGE_RULES_REPOSITORY,
         useValue: PrivilegeRule
     }
-]
+];

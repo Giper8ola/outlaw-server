@@ -6,7 +6,10 @@ import { PrivilegeKit } from './entities/privilege-kit.entity';
 
 @Injectable()
 export class PrivilegeKitsService {
-    constructor(@Inject(PRIVILEGE_KITS_REPOSITORY) private readonly privilegeKitsRepository: typeof PrivilegeKit) {}
+    constructor(
+        @Inject(PRIVILEGE_KITS_REPOSITORY)
+        private readonly privilegeKitsRepository: typeof PrivilegeKit
+    ) {}
 
     async create(createPrivilegeKitDto: CreatePrivilegeKitDto) {
         return await this.privilegeKitsRepository.create(createPrivilegeKitDto);
@@ -17,15 +20,18 @@ export class PrivilegeKitsService {
         kitId: number,
         updatePrivilegeKitDto: UpdatePrivilegeKitDto
     ) {
-        return await this.privilegeKitsRepository.update(updatePrivilegeKitDto, {
-            where: {
-                privilegeId: privilegeId,
-                kitId: kitId
+        return await this.privilegeKitsRepository.update(
+            updatePrivilegeKitDto,
+            {
+                where: {
+                    privilegeId: privilegeId,
+                    kitId: kitId
+                }
             }
-        });
+        );
     }
 
-    async remove(privilegeId: number, kitId: number, ) {
+    async remove(privilegeId: number, kitId: number) {
         return await this.privilegeKitsRepository.destroy({
             where: {
                 privilegeId: privilegeId,

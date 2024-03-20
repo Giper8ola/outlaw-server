@@ -3,11 +3,11 @@ import { CategoryItemService } from './category-item.service';
 import { UpdateCategoryItemDto } from './dto/update-category-item.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthWithArea } from '../../core/decorators/authWithArea.decorator';
-import { AreasEnum } from '../roles/enums/AreasEnum';
+import { AreasEnum } from '../../core/enums/AreasEnum';
 import { CreateCategoryItemDto } from './dto/create-category-item.dto';
 
 @ApiBearerAuth()
-@AuthWithArea(AreasEnum.category)
+@AuthWithArea(AreasEnum.CATEGORY)
 @ApiTags('category-item')
 @Controller('category-item')
 export class CategoryItemController {

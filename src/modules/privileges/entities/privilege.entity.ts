@@ -27,7 +27,7 @@ export class Privilege extends Model<Privilege> {
 
     @Column({
         type: DataType.INTEGER,
-        allowNull: false,
+        allowNull: false
     })
     cost: number;
 
@@ -35,8 +35,8 @@ export class Privilege extends Model<Privilege> {
     kit: Kit;
 
     @BelongsToMany(() => Kit, () => PrivilegeKit)
-    kits: Array<Kit & {PrivilegeKit: PrivilegeKit}>;
+    kits: Array<Kit & { PrivilegeKit: PrivilegeKit }>;
 
     @HasMany(() => PrivilegeRule)
-    rules: PrivilegeRule[]
+    rules: PrivilegeRule[];
 }

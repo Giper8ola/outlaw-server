@@ -6,7 +6,9 @@ import { Kit } from './entities/kit.entity';
 
 @Injectable()
 export class KitsService {
-    constructor(@Inject(KITS_REPOSITORY) private readonly kitsRepository: typeof Kit) {}
+    constructor(
+        @Inject(KITS_REPOSITORY) private readonly kitsRepository: typeof Kit
+    ) {}
     async create(createKitDto: CreateKitDto) {
         return await this.kitsRepository.create(createKitDto);
     }

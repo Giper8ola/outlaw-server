@@ -4,10 +4,10 @@ import { CreateItemsPropDto } from './dto/create-items-prop.dto';
 import { UpdateItemsPropDto } from './dto/update-items-prop.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthWithArea } from '../../core/decorators/authWithArea.decorator';
-import { AreasEnum } from '../roles/enums/AreasEnum';
+import { AreasEnum } from '../../core/enums/AreasEnum';
 
 @ApiBearerAuth()
-@AuthWithArea(AreasEnum.item)
+@AuthWithArea(AreasEnum.ITEM)
 @ApiTags('item-prop')
 @Controller('items-prop')
 export class ItemsPropController {

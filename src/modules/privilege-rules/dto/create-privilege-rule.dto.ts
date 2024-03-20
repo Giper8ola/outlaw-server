@@ -8,5 +8,5 @@ export class CreatePrivilegeRuleDto {
     description: string;
 
     @ApiProperty()
-    privilegeId: number
+    privilegeId: number;
 }

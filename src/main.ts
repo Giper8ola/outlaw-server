@@ -3,7 +3,7 @@ import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import { Role } from './modules/roles/entities/role.entity';
-import { AreasEnum } from './modules/roles/enums/AreasEnum';
+import { AreasEnum } from './core/enums/AreasEnum';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);

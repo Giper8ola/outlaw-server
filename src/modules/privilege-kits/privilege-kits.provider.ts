@@ -6,4 +6,4 @@ export const privilegeKitsProvider = [
         provide: PRIVILEGE_KITS_REPOSITORY,
         useValue: PrivilegeKit
     }
-]
+];

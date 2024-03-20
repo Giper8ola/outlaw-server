@@ -23,16 +23,20 @@ import { PrivilegesModule } from './modules/privileges/privileges.module';
 import { KitsModule } from './modules/kits/kits.module';
 import { PrivilegeKitsModule } from './modules/privilege-kits/privilege-kits.module';
 import { PrivilegeRulesModule } from './modules/privilege-rules/privilege-rules.module';
+import { ClustersStatsModule } from './modules/clusters-stats/clusters-stats.module';
+import { ScheduleModule } from '@nestjs/schedule';
+import { TasksModule } from './core/tasks/tasks.module';
 
 @Module({
     imports: [
+        ScheduleModule.forRoot(),
         UserModule,
         AuthModule,
         DatabaseModule,
         PassportModule,
         ConfigModule.forRoot({ isGlobal: true }),
         RolesModule,
-        JwtModule.register({global: true}),
+        JwtModule.register({ global: true }),
         ShopsModule,
         ItemsModule,
         ItemsTypeModule,
@@ -46,7 +50,9 @@ import { PrivilegeRulesModule } from './modules/privilege-rules/privilege-rules.
         PrivilegesModule,
         KitsModule,
         PrivilegeKitsModule,
-        PrivilegeRulesModule
+        PrivilegeRulesModule,
+        ClustersStatsModule,
+        TasksModule
     ],
     controllers: [AppController],
     providers: [AppService]

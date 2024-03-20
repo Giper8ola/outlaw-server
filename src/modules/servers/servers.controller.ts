@@ -4,10 +4,10 @@ import { CreateServerDto } from './dto/create-server.dto';
 import { UpdateServerDto } from './dto/update-server.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthWithArea } from '../../core/decorators/authWithArea.decorator';
-import { AreasEnum } from '../roles/enums/AreasEnum';
+import { AreasEnum } from '../../core/enums/AreasEnum';
 
 @ApiBearerAuth()
-@AuthWithArea(AreasEnum.cluster)
+@AuthWithArea(AreasEnum.CLUSTER)
 @ApiTags('servers')
 @Controller('servers')
 export class ServersController {

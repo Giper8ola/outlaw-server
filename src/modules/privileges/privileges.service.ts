@@ -6,9 +6,12 @@ import { Privilege } from './entities/privilege.entity';
 
 @Injectable()
 export class PrivilegesService {
-    constructor(@Inject(PRIVILEGE_REPOSITORY) private readonly privilegeRepository: typeof Privilege) {}
+    constructor(
+        @Inject(PRIVILEGE_REPOSITORY)
+        private readonly privilegeRepository: typeof Privilege
+    ) {}
     async create(createPrivilegeDto: CreatePrivilegeDto) {
-        return await this.privilegeRepository.create(createPrivilegeDto) ;
+        return await this.privilegeRepository.create(createPrivilegeDto);
     }
 
     async update(id: number, updatePrivilegeDto: UpdatePrivilegeDto) {

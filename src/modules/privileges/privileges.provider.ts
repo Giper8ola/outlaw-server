@@ -6,4 +6,4 @@ export const privilegesProvider = [
         provide: PRIVILEGE_REPOSITORY,
         useValue: Privilege
     }
-]
+];

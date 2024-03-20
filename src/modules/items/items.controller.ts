@@ -14,14 +14,14 @@ import { CreateItemDto } from './dto/create-item.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
 import { ApiBearerAuth, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { AuthWithArea } from '../../core/decorators/authWithArea.decorator';
-import { AreasEnum } from '../roles/enums/AreasEnum';
+import { AreasEnum } from '../../core/enums/AreasEnum';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Express } from 'express';
 
 @ApiBearerAuth()
 @ApiTags('items')
 @Controller('items')
-@AuthWithArea(AreasEnum.item)
+@AuthWithArea(AreasEnum.ITEM)
 export class ItemsController {
     constructor(private readonly itemsService: ItemsService) {}
     @UseInterceptors(

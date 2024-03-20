@@ -7,6 +7,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { RolesModule } from '../roles/roles.module';
 
 @Module({
+    exports: [ClustersService],
     imports: [FilesModule, JwtModule, RolesModule],
     controllers: [ClustersController],
     providers: [ClustersService, ...clustersProvider]

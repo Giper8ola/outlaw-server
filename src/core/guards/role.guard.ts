@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { AREA_KEY } from '../decorators/area.decorator';
-import { AreasEnum } from '../../modules/roles/enums/AreasEnum';
+import { AreasEnum } from '../enums/AreasEnum';
 import { RolesService } from '../../modules/roles/roles.service';
 
 @Injectable()

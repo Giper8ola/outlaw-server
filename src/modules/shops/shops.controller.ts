@@ -15,10 +15,10 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiBearerAuth, ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { Express } from 'express';
 import { AuthWithArea } from '../../core/decorators/authWithArea.decorator';
-import { AreasEnum } from '../roles/enums/AreasEnum';
+import { AreasEnum } from '../../core/enums/AreasEnum';
 
 @ApiBearerAuth()
-@AuthWithArea(AreasEnum.shop)
+@AuthWithArea(AreasEnum.SHOP)
 @ApiTags('shops')
 @Controller('shops')
 export class ShopsController {

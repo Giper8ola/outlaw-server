@@ -5,6 +5,6 @@ import { kitsProvider } from './kits.provider';
 
 @Module({
     controllers: [KitsController],
-    providers: [KitsService, ...kitsProvider],
+    providers: [KitsService, ...kitsProvider]
 })
 export class KitsModule {}

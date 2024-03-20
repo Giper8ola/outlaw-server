@@ -4,11 +4,11 @@ import { CreateItemsTypeDto } from './dto/create-items-type.dto';
 import { UpdateItemsTypeDto } from './dto/update-items-type.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthWithArea } from '../../core/decorators/authWithArea.decorator';
-import { AreasEnum } from '../roles/enums/AreasEnum';
+import { AreasEnum } from '../../core/enums/AreasEnum';
 @ApiBearerAuth()
 @ApiTags('items-type')
 @Controller('items-type')
-@AuthWithArea(AreasEnum.item)
+@AuthWithArea(AreasEnum.ITEM)
 export class ItemsTypeController {
     constructor(private readonly itemsTypeService: ItemsTypeService) {}
 

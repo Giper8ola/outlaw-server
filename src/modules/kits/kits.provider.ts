@@ -6,4 +6,4 @@ export const kitsProvider = [
         provide: KITS_REPOSITORY,
         useValue: Kit
     }
-]
+];

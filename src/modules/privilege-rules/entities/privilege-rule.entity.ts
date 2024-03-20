@@ -1,4 +1,11 @@
-import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
+import {
+    BelongsTo,
+    Column,
+    DataType,
+    ForeignKey,
+    Model,
+    Table
+} from 'sequelize-typescript';
 import { Privilege } from '../../privileges/entities/privilege.entity';
 @Table
 export class PrivilegeRule extends Model<PrivilegeRule> {
@@ -16,7 +23,7 @@ export class PrivilegeRule extends Model<PrivilegeRule> {
 
     @ForeignKey(() => Privilege)
     @Column({
-        onDelete: "CASCADE"
+        onDelete: 'CASCADE'
     })
     privilegeId: number;
 

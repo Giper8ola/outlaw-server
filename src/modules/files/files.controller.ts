@@ -17,11 +17,11 @@ import { join } from 'path';
 import type { Express, Response } from 'express';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthWithArea } from '../../core/decorators/authWithArea.decorator';
-import { AreasEnum } from '../roles/enums/AreasEnum';
+import { AreasEnum } from '../../core/enums/AreasEnum';
 import { CreateFileDto } from './dto/create-file.dto';
 
 @ApiBearerAuth()
-@AuthWithArea(AreasEnum.file)
+@AuthWithArea(AreasEnum.FILE)
 @ApiTags('files')
 @Controller('files')
 export class FilesController {

@@ -1,4 +1,4 @@
-import { AreasEnum } from '../enums/AreasEnum';
+import { AreasEnum } from '../../../core/enums/AreasEnum';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEnum } from 'class-validator';
 

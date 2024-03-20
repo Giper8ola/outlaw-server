@@ -5,6 +5,6 @@ import { privilegeRulesProvider } from './privilege-rules.provider';
 
 @Module({
     controllers: [PrivilegeRulesController],
-    providers: [PrivilegeRulesService, ...privilegeRulesProvider],
+    providers: [PrivilegeRulesService, ...privilegeRulesProvider]
 })
 export class PrivilegeRulesModule {}

@@ -5,6 +5,6 @@ import { privilegeKitsProvider } from './privilege-kits.provider';
 
 @Module({
     controllers: [PrivilegeKitsController],
-    providers: [PrivilegeKitsService, ...privilegeKitsProvider],
+    providers: [PrivilegeKitsService, ...privilegeKitsProvider]
 })
 export class PrivilegeKitsModule {}

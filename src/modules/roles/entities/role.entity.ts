@@ -1,5 +1,5 @@
 import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
-import { AreasEnum } from '../enums/AreasEnum';
+import { AreasEnum } from '../../../core/enums/AreasEnum';
 import { User } from '../../users/user.entity';
 
 @Table

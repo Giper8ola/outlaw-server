@@ -3,13 +3,13 @@ import { RolesService } from './roles.service';
 import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { AreasEnum } from './enums/AreasEnum';
+import { AreasEnum } from '../../core/enums/AreasEnum';
 import { AuthWithArea } from '../../core/decorators/authWithArea.decorator';
 
 @ApiBearerAuth()
 @ApiTags('roles')
 @Controller('roles')
-@AuthWithArea(AreasEnum.area)
+@AuthWithArea(AreasEnum.AREA)
 export class RolesController {
     constructor(private readonly rolesService: RolesService) {}
     @Post('create')

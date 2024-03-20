@@ -5,6 +5,6 @@ import { privilegesProvider } from './privileges.provider';
 
 @Module({
     controllers: [PrivilegesController],
-    providers: [PrivilegesService, ...privilegesProvider],
+    providers: [PrivilegesService, ...privilegesProvider]
 })
 export class PrivilegesModule {}

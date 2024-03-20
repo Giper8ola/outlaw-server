@@ -5,13 +5,13 @@ import { Kit } from '../../kits/entities/kit.entity';
 export class PrivilegeKit extends Model<PrivilegeKit> {
     @ForeignKey(() => Privilege)
     @Column({
-        onDelete: "CASCADE"
+        onDelete: 'CASCADE'
     })
     privilegeId: number;
 
     @ForeignKey(() => Kit)
     @Column({
-        onDelete: "CASCADE"
+        onDelete: 'CASCADE'
     })
     kitId: number;
 }

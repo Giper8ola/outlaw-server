@@ -1,4 +1,12 @@
-import { BelongsTo, BelongsToMany, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
+import {
+    BelongsTo,
+    BelongsToMany,
+    Column,
+    DataType,
+    ForeignKey,
+    Model,
+    Table
+} from 'sequelize-typescript';
 import { Privilege } from '../../privileges/entities/privilege.entity';
 import { PrivilegeKit } from '../../privilege-kits/entities/privilege-kit.entity';
 import { Category } from '../../category/entities/category.entity';
@@ -14,22 +22,22 @@ export class Kit extends Model<Kit> {
     @ForeignKey(() => Privilege)
     @Column({
         type: DataType.INTEGER,
-        onDelete: "CASCADE"
+        onDelete: 'CASCADE'
     })
     privilegeId: number;
 
     @BelongsTo(() => Privilege)
     privilege: Privilege;
 
-    @BelongsToMany(() => Privilege, () => PrivilegeKit)
-    privileges: Array<Privilege & {PrivilegeKit: PrivilegeKit}>;
-
     @ForeignKey(() => Category)
     @Column({
-        onDelete: "SET DEFAULT"
+        onDelete: 'SET DEFAULT'
     })
     categoryId: number;
 
     @BelongsTo(() => Category)
     category: Category;
+
+    @BelongsToMany(() => Privilege, () => PrivilegeKit)
+    privileges: Array<Privilege & { PrivilegeKit: PrivilegeKit }>;
 }

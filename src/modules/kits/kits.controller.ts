@@ -4,10 +4,10 @@ import { CreateKitDto } from './dto/create-kit.dto';
 import { UpdateKitDto } from './dto/update-kit.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthWithArea } from '../../core/decorators/authWithArea.decorator';
-import { AreasEnum } from '../roles/enums/AreasEnum';
+import { AreasEnum } from '../../core/enums/AreasEnum';
 
 @ApiBearerAuth()
-@AuthWithArea(AreasEnum.privilege)
+@AuthWithArea(AreasEnum.PRIVILEGE)
 @ApiTags('kits')
 @Controller('kits')
 export class KitsController {

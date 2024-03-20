@@ -56,4 +56,10 @@ export class Server extends Model<Server> {
 
     @BelongsTo(() => Cluster)
     cluster: Cluster;
+
+    @Column({
+        type: DataType.INTEGER,
+        defaultValue: 0
+    })
+    online: number;
 }

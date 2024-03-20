@@ -27,6 +27,12 @@ export class Cluster extends Model<Cluster> {
     })
     phase: keyof typeof ServerPhasesEnum;
 
+    @Column({
+        type: DataType.INTEGER,
+        defaultValue: 0
+    })
+    record_online: number;
+
     @ForeignKey(() => File)
     @Column({
         type: DataType.INTEGER,
