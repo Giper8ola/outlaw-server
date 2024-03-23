@@ -37,4 +37,8 @@ export class ServersService {
             }
         });
     }
+
+    async findAll() {
+        return await this.serverRepository.findAll();
+    }
 }
