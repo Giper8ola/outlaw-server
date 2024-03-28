@@ -12,7 +12,11 @@ export class Role extends Model<Role> {
     name: string;
 
     @Column({
-        type: DataType.ARRAY(DataType.ENUM(...Object.keys(AreasEnum))),
+        type: DataType.ARRAY(
+            DataType.ENUM(
+                ...Object.keys(AreasEnum).map((el) => el.toLowerCase())
+            )
+        ),
         allowNull: false
     })
     areas: AreasEnum[];

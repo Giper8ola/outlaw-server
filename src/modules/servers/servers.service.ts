@@ -3,7 +3,9 @@ import { CreateServerDto } from './dto/create-server.dto';
 import { UpdateServerDto } from './dto/update-server.dto';
 import { SERVER_REPOSITORY } from '../../core/constants';
 import { Server } from './entities/server.entity';
-
+import * as moment from 'moment';
+import { Op } from 'sequelize';
+import { ServerStat } from '../server-stats/entities/server-stat.entity';
 @Injectable()
 export class ServersService {
     constructor(
@@ -28,6 +30,21 @@ export class ServersService {
                 id
             }
         });
+    }
+
+    async findAllServerStats(id: number) {
+        const server = await this.serverRepository.findByPk(id, {
+            include: {
+                model: ServerStat,
+                where: {
+                    createdAt: {
+                        [Op.gt]: moment().subtract(5, 'hours').format(),
+                        [Op.lt]: moment().format()
+                    }
+                }
+            }
+        });
+        return server.serverStats;
     }
 
     async remove(id: number) {

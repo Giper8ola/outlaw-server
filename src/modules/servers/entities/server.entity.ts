@@ -11,6 +11,7 @@ import { ItemsProp } from '../../items-prop/entities/items-prop.entity';
 import { DataTypes } from 'sequelize';
 import { ServerPhasesEnum } from '../../../core/enums/ServerPhasesEnum';
 import { Cluster } from '../../clusters/entities/cluster.entity';
+import { ServerStat } from '../../server-stats/entities/server-stat.entity';
 @Table
 export class Server extends Model<Server> {
     @Column({
@@ -62,4 +63,7 @@ export class Server extends Model<Server> {
         defaultValue: 0
     })
     online: number;
+
+    @HasMany(() => ServerStat)
+    serverStats: ServerStat[];
 }

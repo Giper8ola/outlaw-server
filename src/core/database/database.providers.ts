@@ -18,6 +18,7 @@ import { PrivilegeKit } from '../../modules/privilege-kits/entities/privilege-ki
 import { PrivilegeRule } from '../../modules/privilege-rules/entities/privilege-rule.entity';
 import { Kit } from '../../modules/kits/entities/kit.entity';
 import { ClustersStat } from '../../modules/clusters-stats/entities/clusters-stat.entity';
+import { ServerStat } from '../../modules/server-stats/entities/server-stat.entity';
 
 export const databaseProviders = [
     {
@@ -55,7 +56,8 @@ export const databaseProviders = [
                 PrivilegeKit,
                 PrivilegeRule,
                 Kit,
-                ClustersStat
+                ClustersStat,
+                ServerStat
             ]);
             await sequelize.sync();
             return sequelize;

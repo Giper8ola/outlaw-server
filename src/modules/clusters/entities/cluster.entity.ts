@@ -12,6 +12,7 @@ import { Shop } from '../../shops/entities/shop.entity';
 import { File } from '../../files/entities/file.entity';
 import { ServerPhasesEnum } from '../../../core/enums/ServerPhasesEnum';
 import { Server } from '../../servers/entities/server.entity';
+import { ClustersStat } from '../../clusters-stats/entities/clusters-stat.entity';
 @Table
 export class Cluster extends Model<Cluster> {
     @Column({
@@ -48,4 +49,7 @@ export class Cluster extends Model<Cluster> {
 
     @HasMany(() => Server)
     servers: Server[];
+
+    @HasMany(() => ClustersStat)
+    stats: ClustersStat[];
 }

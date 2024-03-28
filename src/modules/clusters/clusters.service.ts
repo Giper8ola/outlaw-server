@@ -5,6 +5,9 @@ import { CLUSTER_REPOSITORY } from '../../core/constants';
 import { Cluster } from './entities/cluster.entity';
 import { FilesService } from '../files/files.service';
 import { Express } from 'express';
+import { Op } from 'sequelize';
+import * as moment from 'moment/moment';
+import { ClustersStat } from '../clusters-stats/entities/clusters-stat.entity';
 
 @Injectable()
 export class ClustersService {
@@ -38,5 +41,25 @@ export class ClustersService {
                 id
             }
         });
+    }
+
+    async findAll() {
+        return await this.clusterRepository.findAll();
+    }
+
+    async findOne(id: number) {
+        const cluster = await this.clusterRepository.findByPk(id, {
+            include: {
+                model: ClustersStat,
+                where: {
+                    createdAt: {
+                        [Op.gt]: moment().subtract(2, 'hours').format(),
+                        [Op.lt]: moment().format()
+                    }
+                }
+            }
+        });
+
+        return cluster.stats;
     }
 }

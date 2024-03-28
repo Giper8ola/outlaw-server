@@ -6,30 +6,29 @@ import {
     Model,
     Table
 } from 'sequelize-typescript';
-
-import { Cluster } from '../../clusters/entities/cluster.entity';
+import { Server } from '../../servers/entities/server.entity';
 
 @Table
-export class ClustersStat extends Model<ClustersStat> {
+export class ServerStat extends Model<ServerStat> {
     @Column({
         type: DataType.INTEGER,
         defaultValue: 0
     })
-    maxOnlineOnPeriod: number;
+    cur_online: number;
 
     @Column({
         type: DataType.INTEGER,
         defaultValue: 0
     })
-    maxServerOnline: number;
+    max_online: number;
 
-    @ForeignKey(() => Cluster)
+    @ForeignKey(() => Server)
     @Column({
         type: DataType.INTEGER,
         onDelete: 'CASCADE'
     })
-    clusterId: number;
+    serverId: number;
 
-    @BelongsTo(() => Cluster)
-    cluster: Cluster;
+    @BelongsTo(() => Server)
+    server: Server;
 }

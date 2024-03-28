@@ -20,24 +20,28 @@ async function bootstrap() {
     SwaggerModule.setup('api', app, document);
 
     await app.listen(3000);
-
-    const role = await Role.findOne({
-        where: {
-            name: 'Admin'
-        }
-    });
-    if (Object.values(AreasEnum).length > role?.areas.length || !role) {
-        if (role) {
-            await Role.destroy({
-                where: {
-                    name: 'Admin'
-                }
+}
+bootstrap().then(async () => {
+    try {
+        const role = await Role.findOne({
+            where: {
+                name: 'Admin'
+            }
+        });
+        if (Object.values(AreasEnum).length > role?.areas.length || !role) {
+            if (role) {
+                await Role.destroy({
+                    where: {
+                        name: 'Admin'
+                    }
+                });
+            }
+            await Role.create({
+                name: 'Admin',
+                areas: Object.values(AreasEnum)
             });
         }
-        await Role.create({
-            name: 'Admin',
-            areas: Object.values(AreasEnum)
-        });
+    } catch (e) {
+        console.log('___', e);
     }
-}
-bootstrap();
+});

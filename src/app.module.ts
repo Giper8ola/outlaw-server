@@ -26,6 +26,7 @@ import { PrivilegeRulesModule } from './modules/privilege-rules/privilege-rules.
 import { ClustersStatsModule } from './modules/clusters-stats/clusters-stats.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TasksModule } from './core/tasks/tasks.module';
+import { ServerStatsModule } from './modules/server-stats/server-stats.module';
 
 @Module({
     imports: [
@@ -52,7 +53,8 @@ import { TasksModule } from './core/tasks/tasks.module';
         PrivilegeKitsModule,
         PrivilegeRulesModule,
         ClustersStatsModule,
-        TasksModule
+        TasksModule,
+        ServerStatsModule
     ],
     controllers: [AppController],
     providers: [AppService]
